@@ -1,0 +1,118 @@
+#include <Arduino.h>
+#include <math.h>
+
+//-----------------------------------------------
+
+//Analog and Digital mux <Select pins>
+static const int A_mux_sel[] = {2, 3, 4, 5};
+static const int D_mux_sel[] = {6, 7, 8, 9};
+
+//Number of Analog and Digital mux select Pins
+const int A_sel_N = 4;
+const int D_sel_N = 4;
+
+//Number of Rows And Columns
+const int N_ROWS = 12;
+const int N_COLS = 12;
+
+//-----------------------------------------------
+ 
+//Analog  and Digital <signal pins>
+static const int A_SIG = A0;
+static const int D_SIG = 10;
+
+//Analog  and Digital <Enable Pins>
+static const int A_EN = 11;
+static const int D_EN = 12;
+
+//MUX Enable 
+#define EN_ON 0
+#define EN_OFF 1 
+
+//MUX D_SIG
+#define D_SIG_ON 0
+#define D_SIG_OFF 1
+//----------HELPERS---------------------
+
+void set_mux_sel(const int mux[],int N_pins,int val){
+	/*Sets the mux select pins using binary representation of val */
+	for (int i=0;i<N_pins;i++){
+		digitalWrite(mux[i],(val >>i)%2);
+	}
+}
+
+// void clear_mux_sel(const int mux[],int N_pins){
+// 	for (int i=0;i<N_pins;i++){
+// 		digitalWrite(mux[i],( val & (int)(pow(2,i)) ) >> i);
+// 	}
+// }
+
+//--------------------------------------
+void setup(){
+	Serial.begin(2000000);
+
+	//Init Select lines
+	for (int i = 0; i < A_sel_N; i++)
+		pinMode(A_mux_sel[i], OUTPUT);
+	for (int i = 0; i < D_sel_N; i++)
+		pinMode(D_mux_sel[i], OUTPUT);
+
+	//Mux Signal Pins
+	// pinMode(A_SIG,INPUT_PULLUP);
+	pinMode(D_SIG,OUTPUT);
+
+	//Mux Enable Pins
+	pinMode(D_EN,OUTPUT);
+	pinMode(A_EN,OUTPUT);
+	digitalWrite(D_SIG,D_SIG_OFF);
+	digitalWrite(A_EN,EN_ON);
+	digitalWrite(D_EN,EN_ON);
+
+
+
+}
+
+void loop(){
+	for (int r=0;r<N_ROWS;r++){
+		
+		//Set the row number 
+		set_mux_sel(D_mux_sel,D_sel_N,r);
+		
+		//Enable The Digital Mux
+		
+		//Activate RoW	
+		digitalWrite(D_SIG,D_SIG_ON);
+
+
+		for (int c=0;c<N_COLS;c++){
+
+			//Set the col number 
+			set_mux_sel(A_mux_sel,A_sel_N,c);
+			
+			//READ CUR  ROW X COLUMN
+			int val=0;
+			val = analogRead(A_SIG);
+			
+			Serial.print(val);
+			Serial.print(" ");
+			//output the value..
+			
+		
+		} // Col Done 
+
+		//Deactivate Row
+		digitalWrite(D_SIG,D_SIG_OFF);
+		
+
+		// //Disable the Two Muxes
+		// digitalWrite(D_EN,EN_OFF);
+		// digitalWrite(D_EN,EN_OFF);
+
+
+
+	}//Row Done
+	Serial.println();
+	delay(10);
+
+}
+

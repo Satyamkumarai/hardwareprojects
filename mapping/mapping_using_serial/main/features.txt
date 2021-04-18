@@ -1,0 +1,39 @@
+
+
+* -f <filename>     : READ from FILE 
+    -b <baud>       : Set Baudrate
+    -r <filename>   : Record values to file
+    
+
+
+python main.py -f 'com14' -s -b 115200 -r 10 -c 10 -o output.csv 
+
+    -f <filename>
+
+Current:
+    -r : Start Recording
+    Change file to None to record from Serial
+
+
+
+filename => which file to read from 
+
+
+
+
+filename='com14'
+
+serial=False
+
+baudrate=115200
+
+outfile='data/output.csv'
+mode='w'
+
+cols=5
+rows=5
+
+no_draw=False
+
+v_max=600
+v_min=60

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "streaming_over_wevsockets_esp",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"arduino.h": "c",
+			"websocketsserver.h": "c",
+			"deque": "c",
+			"string": "c",
+			"vector": "c"
+		}
+	}
+}
