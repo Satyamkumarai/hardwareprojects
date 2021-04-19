@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "interrupt.h": "c",
-        "pgmspace.h": "c"
-    }
+        "pgmspace.h": "c",
+        "*.txt": "cpp"
+    },
+    "kite.codefinder.enableLineDecoration": false
 }
