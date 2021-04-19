@@ -65,6 +65,7 @@ def producer(in_pipe,file_obj,record=True,name = 'P1',is_serial=True,no_draw=Fal
     else:
         file_obj = open(file_obj,'rb')
         skip = 1
+        print("Skip is one!")
     try : 
         data = np.ones(shape)*-1
         if not no_draw:
