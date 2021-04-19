@@ -63,14 +63,14 @@ argparser.add_argument(
     "--v_min",
     type=int,
     default = 600,
-    help="set the min threshold for the heatmap (default : 60).",
+    help="set the min threshold for the heatmap (default : 600).",
 )
 argparser.add_argument(
     "-Mx",
     "--v_max",
     type=int,
     default = 1023,
-    help="set the max threshold for the heatmap (default : 600).",
+    help="set the max threshold for the heatmap (default : 1023).",
 )
 argparser.add_argument(
     "-m",
@@ -78,7 +78,7 @@ argparser.add_argument(
     type=str,
     default = 'rainbow',
     choices=["rainbow",'gist_rainbow','hsv'],
-    help="set the max threshold for the heatmap (default : 600).",
+    help="set the max threshold for the heatmap (default : 'rainbow').",
 )
 # parsed = argparser.parse_args()
 

@@ -1,39 +1,27 @@
+usage: main.py [-h] -f FILENAME [-s] [-b BAUDRATE] [-r ROWS] [-c COLS]
+               [-o OUTFILE] [-oM {w,a}] [-D] [-Mn V_MIN] [-Mx V_MAX]
+               [-m {rainbow,gist_rainbow,hsv}]
 
+Program to use data over Serial to draw a realtime heatmap
 
-* -f <filename>     : READ from FILE 
-    -b <baud>       : Set Baudrate
-    -r <filename>   : Record values to file
-    
-
-
-python main.py -f 'com14' -s -b 115200 -r 10 -c 10 -o output.csv 
-
-    -f <filename>
-
-Current:
-    -r : Start Recording
-    Change file to None to record from Serial
-
-
-
-filename => which file to read from 
-
-
-
-
-filename='com14'
-
-serial=False
-
-baudrate=115200
-
-outfile='data/output.csv'
-mode='w'
-
-cols=5
-rows=5
-
-no_draw=False
-
-v_max=600
-v_min=60
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILENAME, --filename FILENAME
+  -s, --serial          reads from Serial Port specified by -f
+  -b BAUDRATE, --baudrate BAUDRATE
+                        sets the baudrate for the Serial Port (default :
+                        115200)
+  -r ROWS, --rows ROWS  sets the number of rows.(default : 5)
+  -c COLS, --cols COLS  sets the number of columns.(default : 5)
+  -o OUTFILE, --outfile OUTFILE
+                        The file to store the recorded values.
+  -oM {w,a}, --mode {w,a}
+                        Specifies the mode in which file specified by -o will
+                        be opened (default : w)
+  -D, --no_draw         do not draw the heatmap.
+  -Mn V_MIN, --v_min V_MIN
+                        set the min threshold for the heatmap (default : 60).
+  -Mx V_MAX, --v_max V_MAX
+                        set the max threshold for the heatmap (default : 600).
+  -m {rainbow,gist_rainbow,hsv}, --cmap {rainbow,gist_rainbow,hsv}
+                        set the max threshold for the heatmap (default : 600).
